@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0a0b;
+  --ink: #f5f4ef;
+  --accent: #d4ff3a;
+  --muted: #8a8a8e;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+body {
+  font-feature-settings: "ss01", "cv11";
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Film grain overlay used on hero */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Radial backdrop used on hero */
+.hero-bg {
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(212, 255, 58, 0.07), transparent 60%),
+    radial-gradient(ellipse 60% 80% at 20% 80%, rgba(120, 80, 220, 0.08), transparent 60%),
+    #0a0a0b;
+}
+
+/* Lenis recommended */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Card 3D tilt */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.tilt-card:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(-3deg) translateY(-4px);
+}
+
+/* Hide scrollbar on horizontal scroll containers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Subtle interactive glow on focusable surfaces */
+a,
+button,
+[data-hover] {
+  transition:
+    box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.3s ease,
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+a:hover,
+button:hover {
+  box-shadow: 0 0 0 1px rgba(212, 255, 58, 0.25),
+    0 0 32px -4px rgba(212, 255, 58, 0.35);
+}
+
+[data-hover]:hover {
+  box-shadow: 0 0 0 1px rgba(212, 255, 58, 0.2),
+    0 24px 60px -20px rgba(212, 255, 58, 0.18);
+}
